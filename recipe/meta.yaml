@@ -11,15 +11,16 @@ source:
 
 build:
   number: 0
-  script: '{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv '
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv
   noarch: python
 
 requirements:
   host:
     - pip
-    - python >=3.5
+    - python
     - setuptools >=44
     - setuptools_scm >=3.4.3
+    - toml
     - wheel
   run:
     - python >=3.5
@@ -33,13 +34,13 @@ test:
     - pip
 
 about:
-  home: http://github.com/alexmojaki/pure_eval
+  home: https://github.com/alexmojaki/pure_eval
   license: MIT
   license_family: MIT
   license_file: LICENSE.txt
   summary: Safely evaluate AST nodes without side effects
-  doc_url: http://github.com/alexmojaki/pure_eval
-  dev_url: http://github.com/alexmojaki/pure_eval
+  doc_url: https://github.com/alexmojaki/pure_eval/blob/master/README.md
+  dev_url: https://github.com/alexmojaki/pure_eval
 
 extra:
   recipe-maintainers:
