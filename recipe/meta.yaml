@@ -1,37 +1,43 @@
 {% set name = "pure_eval" %}
-{% set version = "0.2.2" %}
+{% set version = "0.2.3" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 2b45320af6dfaa1750f543d714b6d1c520a1688dec6fd24d339063ce0aaa9ac3
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 5f4e983f40564c576c7c8635ae88db5956bb2229d7e9237d03b3c0b0190eaf42
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv
-  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
     - python
-    - setuptools >=44
+    - setuptools >=41
     - setuptools_scm >=3.4.3
-    - toml
     - wheel
   run:
-    - python >=3.5
+    - python
 
 test:
+  source_files:
+    - tests
   imports:
     - pure_eval
+    - pure_eval.core
+    - pure_eval.my_getattr_static
+    - pure_eval.utils
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest -v tests
   requires:
     - pip
+    - pytest
 
 about:
   home: https://github.com/alexmojaki/pure_eval
