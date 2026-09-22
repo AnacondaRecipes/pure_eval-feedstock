@@ -1,5 +1,5 @@
 {% set name = "pure_eval" %}
-{% set version = "0.2.3" %}
+{% set version = "0.2.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 5f4e983f40564c576c7c8635ae88db5956bb2229d7e9237d03b3c0b0190eaf42
+  sha256: 260c2774686e651b79f8b8e7fc9d80b3599ea6a66334b47d5f4abb69fc2c0ea1
 
 build:
   number: 0
@@ -20,6 +20,7 @@ requirements:
     - setuptools >=41
     - setuptools_scm >=3.4.3
     - wheel
+    - setuptools-scm >=3.4.3
   run:
     - python
 
