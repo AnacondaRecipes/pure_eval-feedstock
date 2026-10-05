@@ -2,7 +2,7 @@
 {% set version = "0.2.4" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
@@ -20,7 +20,6 @@ requirements:
     - setuptools >=41
     - setuptools_scm >=3.4.3
     - wheel
-    - setuptools-scm >=3.4.3
   run:
     - python
 
@@ -35,7 +34,7 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    - pytest -v tests
+    - pytest -vv tests
   requires:
     - pip
     - pytest
@@ -46,6 +45,8 @@ about:
   license_family: MIT
   license_file: LICENSE.txt
   summary: Safely evaluate AST nodes without side effects
+  description: |
+    This is a Python package that lets you safely evaluate certain AST nodes without triggering arbitrary code that may have unwanted side effects.
   doc_url: https://github.com/alexmojaki/pure_eval/blob/master/README.md
   dev_url: https://github.com/alexmojaki/pure_eval
 
